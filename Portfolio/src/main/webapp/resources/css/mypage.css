@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    color: #292223 ;
+}
+
+ul, ol{
+    list-style: none;
+}
+
+img{
+    vertical-align: top;
+    border: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.hide {
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/*my page*/
+
+
+#mypage{
+    width: 1000px;
+    display: flex;
+    margin: 50px auto 0 auto;
+}
+
+.left{
+    width: 202px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.profile{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fa-user-circle{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.fa-cog{
+    position: absolute;
+    top: 90px;
+    right: 40px;
+    color: #eee;
+}
+
+.ulf a{
+    display: block;
+    padding-left: 30px;
+    font-size: 25px;
+    line-height: 3em;
+    color: #555;
+}
+
+.ulf a:hover{
+    color: plum;
+}
+
+.uls a, .uls-b a{
+    display: block;
+    padding-left: 35px;
+    line-height: 2em;
+    color: #555;
+}
+
+.uls a:hover, .uls-b a:hover{
+    color: plum;
+    font-weight:700;
+}
+
+.uls-b{
+    margin-bottom: 20px;
+}
+
+.horizon{
+    width: 150px;
+    height: 1px;
+    background-color: #ccc;
+    margin-left: 25px;
+}
+
+.right{
+    width: 800px;
+}
+
+.top{
+    display: flex;
+    margin-bottom: 40px;
+    border: 1px solid #aaa;
+    background-color: #888;
+}
+
+.borderight{
+    width: 1px;
+    height: 110px;
+    background-color: #ccc;
+    margin-top: 30px;
+}
+
+.top li{
+    width: 25%;
+    height: 158px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.top li a{
+    color: plum;
+}
+
+.top li a p{
+    color: #efefef;
+    font-size: 18px;
+    line-height: 1.8em;
+}
+
+.bottom{
+    padding-left: 50px;
+}
+
+.ulfs h2{
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.ulfs div{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 60px;
+}
+
+.ulfs p{
+    text-align: center;
+    line-height: 2em;
+}
+
+.u_text{
+    font-size: 25px;
+    line-height: 1.8em;
+}
+
+.u_text span{
+    color: plum;
+    font-wight: 800;
+}

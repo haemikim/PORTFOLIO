@@ -1,0 +1,51 @@
+one moment{
+ aurora_cakeFamily
+ best_tip
+ caution01~03
+ 매너 후보 }
+
+터틀힙{
+caution02-1~2
+bear_cake01~04
+choice_color01~2
+egg_cake
+flower_cake
+cherry_cake
+plop_cake
+military_cake
+herry_cake
+golf_cake
+bts_cake
+sellcream_cake
+}
+
+cakenalda{
+cherryPink_cake
+lotto_cake
+}
+
+주케이크{
+apple_cake
+}
+
+어프어프{
+ico_cart
+ico_facebook
+ico_instargram
+ico_search
+title_source
+title_best
+title_review
+}
+
+living style{
+ico_view
+}
+
+naver cafe{
+ico_like
+}
+
+베니 케이크 인스타그램{
+review01~6
+}

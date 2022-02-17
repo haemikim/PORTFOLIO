@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.cak.mapper.BoardMapper">
+	<insert id="write">
+		insert custumer(category, title, content, writer)
+		value (
+		<choose>
+			<when test="category == 'notice'.toString()">
+				'공지사항'
+			</when>
+			<when test="category == 'order/pay'.toString()">
+				'주문/결제'
+			</when>
+			<when test="category == 'delivery'.toString()">
+				'배송'
+			</when>
+			<when test="category == 'refund/exchange/return'.toString()">
+				'환불/교환/반품'
+			</when>
+			<when test='category == "goods"'>
+				'상품'
+			</when>
+		</choose>
+		,#{title},#{content},#{writer},
+		<choose>
+			<when test="category == 'notice'.toString()">
+				1
+			</when>
+			<otherwise>
+				0
+			</otherwise>
+		</choose>
+		)
+	</insert>
+	
+	
+		<select id="getTotalCount" resultType="int"> <!-- 임의로 정한 200에 대한 것 -->
+		select count(*) from custumer
+		<if test="keyword != null">
+			where title like concat('%',#{keyword},'%')
+			or content like concat('%',#{keyword},'%')
+			or writer like concat('%',#{keyword},'%')
+		</if>
+	</select>
+	
+</mapper>
