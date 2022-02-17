@@ -4,18 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mypage</title>
+<title>cart</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../resources/css/mypage.css">
+	<link rel="stylesheet" href="../resources/css/cart.css">
     <link rel="stylesheet" href="../resources/css/header.css">
     <script src="../resources/js/all.min.js"></script>
 </head>
 <body>
 <%@include file="header.jsp"%>
-<div id="mypage">
+
+<div id="cart">
     <div class="left">
         <div class="profile">
             <div class="loginImg">

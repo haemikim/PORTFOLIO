@@ -79,7 +79,7 @@ a{
 }
 
 .board__left .boardName {
-    color: #e43530;
+    color: plum;
 }
 
 .board__left p span {
@@ -88,7 +88,7 @@ a{
 }
 
 .board__right a {
-    color: #333;
+    color: #555;
 }
 
 .board__right a:last-child {
@@ -112,9 +112,9 @@ a{
    display: inline-block;
    margin-left:7.5px;
     padding: 5px 10px;
-    color: #333;
-    background-color: rgb(252, 240, 221);
-    border: solid 1px rgb(255, 196, 102);
+    color: #fefefe;
+    background-color: plum;
+    border: solid 1px rgb(218, 109, 218);
     border-radius: 10px;
 }
 
@@ -151,9 +151,9 @@ a{
    margin-left: 5px;
    font-size: 12px;
    border-radius: 5px;
-   color: #333;
-   background-color: rgba(252, 240, 221, 0.9);
-   border: solid 1px rgb(255, 196, 102);
+   color: #fefefe;
+   background-color: plum;
+   border: solid 1px rgb(218, 109, 218);
    cursor: pointer;
 }
 
@@ -231,9 +231,9 @@ a{
    padding: 5px 7px;
    margin: 0 6px;
    border-radius: 9px;
-   color: #333;
-   background-color: rgba(252, 240, 221, 0.9);
-   border: solid 1px rgb(255, 196, 102);
+   color: #fefefe;
+   background-color: plum;
+   border: solid 1px rgb(218, 109, 218);
    cursor: pointer;
 }
 
@@ -285,7 +285,7 @@ a{
 }
 
 .board__list-box .listName a{
-    color: #e43530;
+    color: #plum;
 }
 
 .board__list-box p:last-child {

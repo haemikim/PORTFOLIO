@@ -1,5 +1,6 @@
 package org.cak.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.cak.domain.MemberDTO;
@@ -41,18 +42,22 @@ public class MemberController {
         }
     };
 
-    @GetMapping("mypage")
-    public String mypage(HttpSession session){
+    @GetMapping("cart")
+    public String cart(HttpServletRequest request,HttpSession session){
         if(session.getAttribute("login")!=null) {
-        	return "mypage";
+        	return "redirect:/cart";
         }else{
-            return "redirect:/login";
+        	request.setAttribute("msg", "로그인이 필요합니다.");
+        	request.setAttribute("url", "/login");
+            return "";
+            
         }
+        
     };
 
     @GetMapping("logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/index";
+        return "redirect:/home";
     }
 }

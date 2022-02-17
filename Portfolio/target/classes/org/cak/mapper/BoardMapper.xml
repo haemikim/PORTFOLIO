@@ -35,8 +35,47 @@
 		)
 	</insert>
 	
+	<select id="list" resultType="org.cak.domain.BoardDTO">
+			select *
+			from(
+			select @rownum:=@rownum+1 as rownum, cak.* 
+			from (select @rownum:=0) as tmp,
+				  custumer as cak
+				  
+			  <if test="keyword != null">
+				    where title like concat('%',#{keyword},'%')
+					or content like concat('%',#{keyword},'%')
+					or writer like concat('%',#{keyword},'%')
+			  </if>
+			  order by bno desc, regdate desc
+			) as boardList
+	<![CDATA[
+	 	where rownum > (#{pageNum}-1)*#{amount} 
+		and rownum <= #{pageNum}*#{amount}
+	]]>
+
+	</select>
 	
-		<select id="getTotalCount" resultType="int"> <!-- 임의로 정한 200에 대한 것 -->
+	<select id="detail" resultType="org.cak.domain.BoardDTO">
+		select *
+		from custumer
+		where bno=#{bno}
+	</select>
+	
+	<update id="modify">
+		update custumer
+		set title=#{title},
+			content=#{content}
+		where bno=#{bno}
+	</update>
+	
+	<delete id="remove">
+		delete from custumer
+		where bno=#{bno}
+	</delete>
+	
+	
+	<select id="getTotalCount" resultType="int"> <!-- 임의로 정한 200에 대한 것 -->
 		select count(*) from custumer
 		<if test="keyword != null">
 			where title like concat('%',#{keyword},'%')
@@ -44,5 +83,13 @@
 			or writer like concat('%',#{keyword},'%')
 		</if>
 	</select>
+	
+	
+	<update id="cntupdate">
+		update custumer
+		set cnt = cnt+1
+		where bno = #{bno}
+	</update>
+	
 	
 </mapper>

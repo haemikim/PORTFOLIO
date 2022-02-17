@@ -14,9 +14,8 @@
                    	 <li><a href="/join">JOIN</a></li>
                      <li><a href="/login">LOGIN</a></li>
                    </c:if>
-                   <c:if test="${login!=null}">                                       
+                   <c:if test="${login!=null}">                                    
                       <li><a href="/logout">로그아웃</a></li>
-                      <li><a href="/mypage">MYPAGE</a></li>
                 	</c:if>                
                    <li class="cart"><a href="/cart">CART</a></li>
                 </ul><!--.utill-->

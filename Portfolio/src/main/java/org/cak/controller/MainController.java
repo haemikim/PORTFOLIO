@@ -1,6 +1,7 @@
 package org.cak.controller;
 
 
+import org.cak.domain.BoardDTO;
 import org.cak.domain.Criteria;
 import org.cak.domain.pageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class MainController {
 		int total=service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new pageDTO(cri,total));
 	}
+	
+	// <게시판 상세 페이지>로 이동
+	@GetMapping("detail")
+	public void detail(BoardDTO board, Model model) {
+		model.addAttribute("detail", service.detail(board));
+	}
+	
 	
 	
 	// 보고 하면 새로 컨트롤러 만들기
