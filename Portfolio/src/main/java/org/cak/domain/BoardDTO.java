@@ -15,6 +15,8 @@ public class BoardDTO {
 	private String regdate;
 	// 클릭 수 
 	private int cnt;
+	// 카테고리 정렬(notice맨위에 정렬)
+	private int pin;
 	
 	public int getBno() {
 		return bno;
@@ -58,11 +60,17 @@ public class BoardDTO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-
+	
+	public int getPin() {
+		return pin;
+	}
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
 	@Override
 	public String toString() {
 		return "BoardDTO [bno=" + bno + ", category=" + category + ", title=" + title + ", content=" + content
-				+ ", writer=" + writer + ", regdate=" + regdate + ", cnt=" + cnt + "]";
+				+ ", writer=" + writer + ", regdate=" + regdate + ", cnt=" + cnt + ", pin=" + pin + "]";
 	}
 	
 }

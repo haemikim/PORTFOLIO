@@ -27,4 +27,19 @@ public class BoardServiceImpl implements BoardService{
 		bmapper.cntupdate(board);
 		return bmapper.detail(board);
 	}
+	// 게시판 글쓰기 설계한 것을 구현
+	public void write(BoardDTO board) {
+		bmapper.write(board);
+	}
+	// 게시판 수정 페이지 설계한 것을 구현
+	public void modify(BoardDTO board) {
+		bmapper.modify(board);
+	}
+	
+	// 게시판 삭제 설계한 것을 구현
+	public void remove(BoardDTO board) {
+		bmapper.remove(board);
+	}
+
+	
 }
