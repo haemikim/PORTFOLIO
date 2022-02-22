@@ -11,7 +11,7 @@ public class Criteria {
 	private String order;
 	
 	Criteria(){
-		this(1,10); //한페이지에 10개
+		this(1,9); //한페이지에 9개
 	}
 	Criteria(int pageNum, int amount){ // 정해진 숫자에 따라 나오게 하기
 		this.pageNum=pageNum;

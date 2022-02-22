@@ -13,8 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resources/css/header.css">
     <link rel="stylesheet" href="../resources/css/productList.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
-    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../resources/js/productList.js"></script>
     
 </head>

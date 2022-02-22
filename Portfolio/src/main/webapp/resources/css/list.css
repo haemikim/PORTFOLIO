@@ -198,10 +198,10 @@ table, tr, th{
     width: 50px;
     line-height: 1.5em;
     margin: 0 auto;
-    background-color: rgb(252, 240, 221);
-    border: solid 1px rgb(255, 228, 185);
+    background-color: plum;
+    border: solid 1px rgb(218, 109, 218);
     border-radius: 10px;
-    color: #555;
+    color: #fefefe;
     font-weight: 700;
 
 }

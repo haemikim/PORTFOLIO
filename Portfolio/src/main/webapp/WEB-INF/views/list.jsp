@@ -71,7 +71,7 @@
 		        <tbody class="bd_tbody"> 
 		            <c:forEach items="${list}" var="board">
 		            	<c:choose>
-			            	<c:when test="${board.category eq '공지사항'}">
+			            	<c:when test="${board.category eq 'notice'}">
 				            	<tr class="board_notice">
 				            		<th class="bd_notice"><span>${board.category}</span></th>
 				            		<th class="bd_title"><a href="/detail?bno=${board.bno}">${board.title}</a></th>

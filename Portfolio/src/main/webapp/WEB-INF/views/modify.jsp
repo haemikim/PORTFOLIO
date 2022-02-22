@@ -22,58 +22,17 @@
 	
 	<div id="board_list_write">
         <h2>글 수정</h2>
-        
         <form class="write__in" action="/modify" method="post">
         	<input type="hidden" name="bno" value="${detail.bno}">
             <div class="write__header">
-                <div class="write__header-select">
-                	<c:choose>
-						<c:when test="${detail.category eq '공지사항'}">
-		                    <select name="category">
-		                        <option value="notice" selected>공지사항(관리자만 선택 가능합니다)</option>
-		                        <option value="order/pay">주문/결제</option>
-		                        <option value="delivery">배송</option>
-		                        <option value="refund/exchange/return">환불/교환/반품</option>
-		                        <option value="goods">상품</option>
-		                    </select>
-						</c:when>                	
-						<c:when test="${detail.category eq '주문/결제'}">
-		                    <select name="category">
-		                        <option value="notice">공지사항(관리자만 선택 가능합니다)</option>
-		                        <option value="order/pay" selected>주문/결제</option>
-		                        <option value="delivery">배송</option>
-		                        <option value="refund/exchange/return">환불/교환/반품</option>
-		                        <option value="goods">상품</option>
-		                    </select>
-						</c:when>                	
-						<c:when test="${detail.category eq '배송'}">
-		                    <select name="category">
-		                        <option value="notice">공지사항(관리자만 선택 가능합니다)</option>
-		                        <option value="order/pay">주문/결제</option>
-		                        <option value="delivery" selected>배송</option>
-		                        <option value="refund/exchange/return">환불/교환/반품</option>
-		                        <option value="goods">상품</option>
-		                    </select>
-						</c:when>                	
-						<c:when test="${detail.category eq '환불/교환/반품'}">
-		                    <select name="category">
-		                        <option value="notice">공지사항(관리자만 선택 가능합니다)</option>
-		                        <option value="order/pay">주문/결제</option>
-		                        <option value="delivery">배송</option>
-		                        <option value="refund/exchange/return" selected>환불/교환/반품</option>
-		                        <option value="goods">상품</option>
-		                    </select>
-						</c:when>                	
-						<c:when test="${detail.category eq '상품'}">
-		                    <select name="category">
-		                        <option value="notice">공지사항(관리자만 선택 가능합니다)</option>
-		                        <option value="order/pay">주문/결제</option>
-		                        <option value="delivery">배송</option>
-		                        <option value="refund/exchange/return">환불/교환/반품</option>
-		                        <option value="goods" selected>상품</option>
-		                    </select>
-						</c:when>                	
-                	</c:choose>
+               <div class="write__header-select">
+                   <select name="category">
+                       <option value="notice"<c:out value="${detail.category eq 'notice'?'selected':''}" />>notice(관리자만 선택 가능합니다)</option>
+                       <option value="주문/결제" <c:out value="${detail.category eq '주문/결제'?'selected':''}" />>주문/결제</option>
+                       <option value="배송" <c:out value="${detail.category eq 'delivery'?'selected':''}" />>배송</option>
+                       <option value="환불/교환/반품" <c:out value="${detail.category eq 'refund/exchange/return'?'selected':''}" />>환불/교환/반품</option>
+                       <option value="상품" <c:out value="${detail.category eq 'goods'?'selected':''}" />>상품</option>
+                   </select>             	
                 </div>
                 <input name="title" maxlength="50" class="write__header-title" type="text" value="${detail.title}" required>
             </div>

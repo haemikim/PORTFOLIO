@@ -5,27 +5,9 @@
 <mapper namespace="org.cak.mapper.BoardMapper">
 	<insert id="write">
 		insert custumer(category, title, content, writer, pin)
-		value (
+		value (#{category},#{title},#{content},#{writer},
 		<choose>
-			<when test="category == 'notice'.toString()">
-				'공지사항'
-			</when>
-			<when test="category == 'order/pay'.toString()">
-				'주문/결제'
-			</when>
-			<when test="category == 'delivery'.toString()">
-				'배송'
-			</when>
-			<when test="category == 'refund/exchange/return'.toString()">
-				'환불/교환/반품'
-			</when>
-			<when test='category == "goods"'>
-				'상품'
-			</when>
-		</choose>
-		,#{title},#{content},#{writer},
-		<choose>
-			<when test="category == 'notice'.toString()">
+			<when test="category == 'notice'">
 				1
 			</when>
 			<otherwise>
@@ -66,7 +48,16 @@
 	<update id="modify">
 		update custumer
 		set title=#{title},
-			content=#{content}
+			content=#{content},
+			category=#{category},					
+			pin=<choose>
+					<when test="category == 'notice'">
+						1
+					</when>
+					<otherwise>
+						0
+					</otherwise>
+				</choose> 
 		where bno=#{bno}
 	</update>
 	

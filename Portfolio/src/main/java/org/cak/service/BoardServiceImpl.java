@@ -33,6 +33,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 	// 게시판 수정 페이지 설계한 것을 구현
 	public void modify(BoardDTO board) {
+		System.out.println("service="+board);
 		bmapper.modify(board);
 	}
 	

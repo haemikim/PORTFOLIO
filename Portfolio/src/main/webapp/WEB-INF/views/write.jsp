@@ -28,12 +28,12 @@
                 <div class="write__header-select">
                     <select name="category">
                     	<c:if test="${login.id == 'administrator1'}">
-                        	<option value="notice">공지사항(관리자만 선택 가능합니다)</option>
+                        	<option value="notice">notice(관리자만 선택 가능합니다)</option>
                         </c:if>
-                        <option value="order/pay" selected>주문/결제</option>
-                        <option value="delivery">배송</option>
-                        <option value="refund/exchange/return">환불/교환/반품</option>
-                        <option value="goods">상품</option>
+                        <option value="주문/결제" selected>주문/결제</option>
+                        <option value="배송">배송</option>
+                        <option value="환불/교환/반품">환불/교환/반품</option>
+                        <option value="상품">상품</option>
                     </select>
                 </div>
                 <input name="title" maxlength="50" class="write__header-title" type="text" placeholder="제목을 입력하세요." required>
