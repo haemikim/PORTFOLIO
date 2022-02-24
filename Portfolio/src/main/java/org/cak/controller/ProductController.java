@@ -65,8 +65,8 @@ public class ProductController {
 		
 		
 		@PostMapping(value = "uploadAjaxAction", produces= {MediaType.APPLICATION_JSON_VALUE})
-		public ResponseEntity<ArrayList<ProductDTO>> uploadAjaxAction(MultipartFile[] uploadFile) {
-			ArrayList<ProductDTO> list = new ArrayList<>();
+		public ResponseEntity<ProductDTO> uploadAjaxAction(MultipartFile uploadFile) {
+
 			
 			// 파일 업로드 할 경로 지정
 			String uploadFolder = "D:\\PORTFOLIO\\upload";
@@ -81,11 +81,11 @@ public class ProductController {
 				uploadPath.mkdirs();
 			}
 			
-			for (MultipartFile multipartFile : uploadFile) {
+			//for (MultipartFile multipartFile : uploadFile) {
 				ProductDTO productdto = new ProductDTO();
 				
 				// DTO filename 저장
-				String uploadFileName = multipartFile.getOriginalFilename();
+				String uploadFileName = uploadFile.getOriginalFilename();
 				productdto.setFileName(uploadFileName);
 				
 				UUID uuid = UUID.randomUUID();
@@ -93,7 +93,7 @@ public class ProductController {
 				File saveFile = new File (uploadPath, uploadFileName);
 				
 				try {
-					multipartFile.transferTo(saveFile);
+					uploadFile.transferTo(saveFile);
 					
 					// DTO uploadPath 저장
 					productdto.setUploadPath(uploadFolderPath);
@@ -103,17 +103,17 @@ public class ProductController {
 					// 썸네일 이미지를 만들기 전, 썸네일 파일을 생성
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
 					// 썸네일 이미지 생성
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(),thumbnail, 100, 100);
+					Thumbnailator.createThumbnail(uploadFile.getInputStream(),thumbnail, 100, 100);
 					// 썸네일 종료(메모리 공간 환수)
 					thumbnail.close();
 					
-					list.add(productdto);
+
 					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-			return new ResponseEntity<>(list,HttpStatus.OK);
+			//}
+			return new ResponseEntity<>(productdto,HttpStatus.OK);
 		
 		}
 		

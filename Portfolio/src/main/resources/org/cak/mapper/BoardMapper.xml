@@ -84,4 +84,13 @@
 	</update>
 	
 	
+	<!-- 댓글 영역 -->
+	
+	   <update id="update">
+	      update reply
+	      set reply = #{reply}
+	      where bno = #{bno}
+	   </update>
+	
+	
 </mapper>

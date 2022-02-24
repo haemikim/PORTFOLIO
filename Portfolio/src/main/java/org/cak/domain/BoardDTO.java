@@ -17,6 +17,10 @@ public class BoardDTO {
 	private int cnt;
 	// 카테고리 정렬(notice맨위에 정렬)
 	private int pin;
+	// 답글
+	private String reply;
+	// 답글 작성자
+	private String replyer;
 	
 	public int getBno() {
 		return bno;
@@ -67,10 +71,24 @@ public class BoardDTO {
 	public void setPin(int pin) {
 		this.pin = pin;
 	}
+	
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+	public String getReplyer() {
+		return replyer;
+	}
+	public void setReplyer(String replyer) {
+		this.replyer = replyer;
+	}
 	@Override
 	public String toString() {
 		return "BoardDTO [bno=" + bno + ", category=" + category + ", title=" + title + ", content=" + content
-				+ ", writer=" + writer + ", regdate=" + regdate + ", cnt=" + cnt + ", pin=" + pin + "]";
+				+ ", writer=" + writer + ", regdate=" + regdate + ", cnt=" + cnt + ", pin=" + pin + ", reply=" + reply
+				+ ", replyer=" + replyer + "]";
 	}
 	
 }
