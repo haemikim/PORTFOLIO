@@ -19,4 +19,16 @@ public interface BoardService {
 	// 게시판 삭제 설계
 	public void remove(BoardDTO board);
 	
+	
+	//---- 댓글 -------
+	
+	// 게시판 글쓰기 설계된것을 구현
+	public int Rwrite(BoardDTO board);
+	// 댓글 수정을 하기위해 댓글내용가져오기
+	public BoardDTO Rdetail(int bno);
+	// 댓글 수정 설계된것을 구현
+	public int Rupdate(BoardDTO board);
+	// 댓글 삭제 설계
+	public int Rremove(BoardDTO board);
+		
 }

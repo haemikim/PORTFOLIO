@@ -72,8 +72,8 @@
               </c:if>
               <div>
                  <input id="session" type="hidden" value="${login.id}"/>
-                 <ul id="relist">
-                 </ul>
+                 <div id="relist">
+                 </div>
               </div>
               
               <!-- Modal -->
@@ -83,9 +83,6 @@
                        <h4 class="modal-title">댓글 수정하기</h4>
                    </div>
                    <div class="modal-body">
-                      <div class="modal-rno">
-                         <input type="hidden" name="rno">
-                        </div>
                       <div class="modal-replyer">
                          <label>Replyer</label>
                          <input type="text" name="replyer">

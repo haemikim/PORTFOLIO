@@ -42,5 +42,26 @@ public class BoardServiceImpl implements BoardService{
 		bmapper.remove(board);
 	}
 
+//---- 댓글 -------
+	
+	// 게시판 글쓰기 설계된것을 구현
+	public int Rwrite(BoardDTO board) {
+		// insert 성공시 ReplyMapper.xml로 부터1
+		// insert 성공시 ReplyMapper.xml로 부터0
+		// 값을 리턴받는다
+		return bmapper.Rwrite(board);
+	}
+// 댓글 수정을 하기위해 댓글내용가져오기
+	public BoardDTO Rdetail(int bno) {
+		return bmapper.Rdetail(bno);
+	}
+// 댓글 수정 설계된것을 구현
+	public int Rupdate(BoardDTO board) {
+		return bmapper.Rupdate(board);
+	}
+	// 댓글 삭제 설계
+	public int Rremove(BoardDTO board) {
+		return bmapper.Rremove(board);
+	}
 	
 }

@@ -2,25 +2,25 @@
  * 
  * 
  */
+// list부분 추가하기!!!!!!!!
 $(document).ready(function(){
    // 게시물 번호 가져오기
    let bno = $("#bno").val();
    
-   // showList 함수를 실행함으로써 로딩되는 즉시 목록 리스트가 보여짐
    showList();
    
    // showList 함수 선언
-   function showList() {
-      replyService.getList({bno:bno}, function(list){
-         
+	function showList(){ 
+			BoardService.getList({bno:bno},function(list){
+					
          var str="";
          
-         for(var i=0; i<list.length; i++){
-            str+="<li class='replyList' data-rno='"+list[i].rno+"'>";
+
+            str+="<div class='replyList' data-bno='"+list[i].bno+"'>";
             str+="<div><p><b>"+list[i].replyer+"</b></p>" + "<p>"+list[i].reply+"</p></div>";
-            str+="<div><button class='modBtn' data-rno='"+list[i].rno+"'>수정</button><button class='removeBtn' data-rno='"+list[i].rno+"'>삭제</button></div>"
-            str+="</li><br>";
-         }
+            str+="<div><button class='modBtn' data-bno='"+list[i].bno+"'>수정</button><button class='removeBtn' data-bno='"+list[i].bno+"'>삭제</button></div>"
+            str+="</div><br>";
+
          
          $("#relist").html(str);
          
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	       	 $(".removeBtn").hide();
         }
       });
-   }   
+   }
    // showList 함수 선언 끝
    
       // 댓글 작성 버튼을 클릭하면
@@ -46,7 +46,7 @@ $(document).ready(function(){
             let replyer = $("#replyer").val();
             
             
-            replyService.add({reply:reply, replyer:replyer, bno:bno},
+            BoardService.add({reply:reply, replyer:replyer, bno:bno},
                   function(result){
                alert("댓글 작성 : " + result);
                showList();
@@ -74,10 +74,10 @@ $(document).ready(function(){
          $("body").css("overflow", "hidden");
          
          // rno값 가져오기 (for문에 사용했던 data-rno)
-         const rno = $(this).data("rno");
+         const bno = $(this).data("bno");
          
-         replyService.reDetail(rno,function(detail){
-            $("input[name='rno']").val(rno);
+         BoardService.reDetail(rno,function(detail){
+            $("input[name='bno']").val(bno);
             $("input[name='replyer']").val(detail.replyer);
             $("input[name='reply']").val(detail.reply);
          })
@@ -87,9 +87,9 @@ $(document).ready(function(){
       
       // 댓글 update
       $("#insideModBtn").on("click", function(){
-         const reply = {rno:$("input[name='rno']").val(), reply:$("input[name='reply']").val()};
+         const reply = {bno:$("input[name='bno']").val(), reply:$("input[name='reply']").val()};
          
-         replyService.reUpdate(reply, function(result) {
+         BoardService.reUpdate(reply, function(result) {
             alert("댓글 수정 : " + result);
             $(".modal").css("display", "none");
             showList();
@@ -113,10 +113,10 @@ $(document).ready(function(){
    // 댓글 삭제 버튼을 클릭하면
    $("#relist").on("click", ".removeBtn", function(){
       // rno값 가져오기 (for문에 사용했던 data-rno)
-      const rno = $(this).data("rno");
-      const reply = {rno:rno};
+      const bno = $(this).data("bno");
+      const reply = {bno:bno};
       
-      replyService.reRemove(reply, function(result) {
+      BoardService.reRemove(reply, function(result) {
          alert("댓글 삭제 : " + result);
          showList();
       })
@@ -142,7 +142,7 @@ var replyService=(function(){
    // 댓글 쓰기 함수 선언
    function add(reply,callback) {
       $.ajax({
-         url:"/replies/new",
+         url:"/new",
          type:"post",
          data:JSON.stringify(reply),
          contentType : "application/json;charset=UTF-8",
@@ -152,24 +152,13 @@ var replyService=(function(){
          }
       })
    }
-   
-   // 댓글 목록 리스트를 보기 위한 함수 선언
-   function getList(param, callback) {
-      let bno = param.bno;
-      $.getJSON(
-            "/replies/list/"+bno+".json",
-            function(data){
-               if (callback)
-                  callback(data);
-            }
-      )
-   }
+
    
    // 댓글을 수정하기 위해 데이터를 받아오는 함수 선언
-   function reDetail(rno, callback) {
-      var rno=rno;
+   function reDetail(bno, callback) {
+      var bno=bno;
       $.getJSON(
-            "/replies/"+rno+".json",
+            bno+".json",
             function(data) {
                if(callback)
                   callback(data);
@@ -180,7 +169,7 @@ var replyService=(function(){
    // 댓글 update를 위한 함수 선언
    function reUpdate(reply, callback) {
       $.ajax({
-         url: "/replies/update",
+         url: "/Rupdate",
          type: "put",
          data: JSON.stringify(reply),
          contentType:"application/json; charset=utf-8",
@@ -196,7 +185,7 @@ var replyService=(function(){
    // 댓글 삭제를 위한 함수 선언
    function reRemove(reply, callback) {
       $.ajax({
-         url: "/replies/remove",
+         url: "/Rremove",
          type: "delete",
          data: JSON.stringify(reply),
          contentType:"application/json; charset=utf-8",

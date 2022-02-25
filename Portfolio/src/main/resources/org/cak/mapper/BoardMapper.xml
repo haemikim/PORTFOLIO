@@ -86,11 +86,22 @@
 	
 	<!-- 댓글 영역 -->
 	
-	   <update id="update">
-	      update reply
-	      set reply = #{reply}
-	      where bno = #{bno}
-	   </update>
+   <insert id="Rwrite">
+      insert into reply(bno,reply,replyer)
+      values(#{bno},#{reply},#{replyer})
+   </insert>
+   <select id="Rmodify" resultType="org.cak.domain.BoardDTO">
+      select * from reply where bno=#{bno}
+   </select>
+   <update id="Rupdate">
+      update reply
+      set reply = #{reply}
+      where bno = #{bno}
+   </update>
+   <delete id="Rremove">
+      delete from reply
+      where bno = #{bno}
+   </delete>
 	
 	
 </mapper>
