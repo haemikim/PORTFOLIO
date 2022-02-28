@@ -8,17 +8,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시물</title>
+    <title>공지사항</title>
 
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resources/css/header.css">
     <link rel="stylesheet" href="../resources/css/detail.css">
-       
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   	<script src="https://kit.fontawesome.com/a3ecbab334.js"></script>
-    <script type="text/javascript" src="../resources/js/detail.js"></script>
+
     
 </head>
 <body>
@@ -54,7 +52,7 @@
                   <a href="/remove?bno=${detail.bno}">글 삭제</a>
                </div>
                </c:if>
-           </div>
+           </div> 
            
            <!-- 댓글 영역 -->
            <div class="board__reply">
@@ -72,8 +70,8 @@
               </c:if>
               <div>
                  <input id="session" type="hidden" value="${login.id}"/>
-                 <div id="relist">
-                 </div>
+                 <ul id="relist">
+                 </ul>
               </div>
               
               <!-- Modal -->
@@ -83,6 +81,9 @@
                        <h4 class="modal-title">댓글 수정하기</h4>
                    </div>
                    <div class="modal-body">
+                      <div class="modal-bno">
+                         <input type="hidden" name="bno">
+                        </div>
                       <div class="modal-replyer">
                          <label>Replyer</label>
                          <input type="text" name="replyer">
@@ -125,5 +126,11 @@
            </div>
        </div>
    </div>
+        
+
+   
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://kit.fontawesome.com/a3ecbab334.js"></script>
+    <script type="text/javascript" src="../resources/js/detail.js"></script>
 </body>
 </html>

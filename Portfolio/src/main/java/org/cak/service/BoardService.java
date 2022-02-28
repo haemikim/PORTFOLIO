@@ -26,6 +26,8 @@ public interface BoardService {
 	public int Rwrite(BoardDTO board);
 	// 댓글 수정을 하기위해 댓글내용가져오기
 	public BoardDTO Rdetail(int bno);
+    // 댓글 목록 리스트 설계
+    public BoardDTO Rlist(int bno);
 	// 댓글 수정 설계된것을 구현
 	public int Rupdate(BoardDTO board);
 	// 댓글 삭제 설계

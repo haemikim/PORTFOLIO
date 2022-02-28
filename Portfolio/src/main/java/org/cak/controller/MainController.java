@@ -13,8 +13,10 @@ import org.springframework.ui.Model;
 import org.cak.service.BoardService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -81,32 +83,36 @@ public class MainController {
 	public void hallOfFames() {}
 	
 	
-	@PostMapping(value="new",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> create(BoardDTO board){ // ResponseEntity가 json타입을 사용하여 호출한 곳으로 다시보내줄때 사용!!
-		System.out.println("BoardDTO="+board);
+	@PutMapping(value="new",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> create(@RequestBody BoardDTO board){ // ResponseEntity가 json타입을 사용하여 호출한 곳으로 다시보내줄때 사용!!
+		System.out.println("BoardDTO111="+board);
 		int result=service.Rwrite(board);
 		System.out.println("result="+result);
 		//	                          insert가 정상적으로 처리가 되었을떄	
 		return result==1?new ResponseEntity<>("success",HttpStatus.OK) //새로운 생성자  <배열> 성공, 코드상태.ok
 						:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		//									  insert가 비정상적으로 처리가 되었을떄
-	}// js에 getList의JSON주소를 가져온다
+	}// js에 getRList의JSON주소를 가져온다
+   @GetMapping(value="Rlist/{bno}", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+   public ResponseEntity<BoardDTO> getRList(@PathVariable int bno) {
+      return new ResponseEntity<>(service.Rlist(bno),HttpStatus.OK);
+   }
 	//댓글수정을 하기위해 댓글내용 가져오기
-	@GetMapping(value="{rno}", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="{no}", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	
-	public ResponseEntity<BoardDTO> getDetail(int bno){// REST방식에서 주로 사용.URL경로의 일부를 파라미터 사용하고자 할때
+	public ResponseEntity<BoardDTO> getDetail(@PathVariable int bno){// REST방식에서 주로 사용.URL경로의 일부를 파라미터 사용하고자 할때
 		System.out.println(bno);
 		return new ResponseEntity<>(service.Rdetail(bno),HttpStatus.OK);	
 
 	}
-	@PutMapping(value="update",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> Rupdate(BoardDTO board){// 객체타입을 매개변수로 사용해야하는 경우사용
+	@PutMapping(value="Rupdate",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> Rupdate(@RequestBody BoardDTO board){// 객체타입을 매개변수로 사용해야하는 경우사용
 		System.out.println("BoardDTO="+board);		  	
 		return service.Rupdate(board)==1?new ResponseEntity<>("success",HttpStatus.OK)			 // insert가 정상적으로 처리가 되었을떄
 										:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // update가 비정상적으로 처리가 되었을떄
 	}
-	@DeleteMapping(value="remove",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> Rremove(BoardDTO board){
+	@DeleteMapping(value="Rremove",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> Rremove(@RequestBody BoardDTO board){
 		System.out.println("BoardDTO="+board);	
 		return service.Rremove(board)==1?new ResponseEntity<>("success",HttpStatus.OK)			 // insert가 정상적으로 처리가 되었을떄
 										:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // update가 비정상적으로 처리가 되었을떄

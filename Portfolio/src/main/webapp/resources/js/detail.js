@@ -11,14 +11,14 @@ $(document).ready(function(){
    
    // showList 함수 선언
 	function showList(){ 
-			BoardService.getList({bno:bno},function(list){
+			BoardService.getRList({bno:bno},function(Rlist){
 					
          var str="";
          
 
-            str+="<div class='replyList' data-bno='"+list[i].bno+"'>";
-            str+="<div><p><b>"+list[i].replyer+"</b></p>" + "<p>"+list[i].reply+"</p></div>";
-            str+="<div><button class='modBtn' data-bno='"+list[i].bno+"'>수정</button><button class='removeBtn' data-bno='"+list[i].bno+"'>삭제</button></div>"
+            str+="<div class='replyList' data-bno='"+Rlist[i].bno+"'>";
+            str+="<div><p><b>"+Rlist[i].replyer+"</b></p>" + "<p>"+Rlist[i].reply+"</p></div>";
+            str+="<div><button class='modBtn' data-bno='"+Rlist[i].bno+"'>수정</button><button class='removeBtn' data-bno='"+Rlist[i].bno+"'>삭제</button></div>"
             str+="</div><br>";
 
          
@@ -42,13 +42,16 @@ $(document).ready(function(){
          if($("#reply").val() != "" && $("#replyer").val() != ""){
             //사용자가 입력한 댓글 내용을 저장
             let reply = $("#reply").val();
+            console.log(reply);
             //사용자가 입력한 댓글 작성자를 저장
             let replyer = $("#replyer").val();
+
             
             
-            BoardService.add({reply:reply, replyer:replyer, bno:bno},
+            BoardService.Update({reply:reply, replyer:replyer, bno:bno},
                   function(result){
                alert("댓글 작성 : " + result);
+               console.log(reply);
                showList();
             }
             );
@@ -73,11 +76,11 @@ $(document).ready(function(){
          $(".modal").css("display", "block");
          $("body").css("overflow", "hidden");
          
-         // rno값 가져오기 (for문에 사용했던 data-rno)
+         // bno값 가져오기 (for문에 사용했던 data-bno)
          const bno = $(this).data("bno");
          
-         BoardService.reDetail(rno,function(detail){
-            $("input[name='bno']").val(bno);
+         BoardService.reDetail(bno,function(detail){
+            $("input[name='bno']").val(detail.bno);
             $("input[name='replyer']").val(detail.replyer);
             $("input[name='reply']").val(detail.reply);
          })
@@ -112,7 +115,7 @@ $(document).ready(function(){
    
    // 댓글 삭제 버튼을 클릭하면
    $("#relist").on("click", ".removeBtn", function(){
-      // rno값 가져오기 (for문에 사용했던 data-rno)
+      // bno값 가져오기 (for문에 사용했던 data-rno)
       const bno = $(this).data("bno");
       const reply = {bno:bno};
       
@@ -138,19 +141,34 @@ $(document).ready(function(){
 
 
 
-var replyService=(function(){
+var BoardService=(function(){
    // 댓글 쓰기 함수 선언
-   function add(reply,callback) {
+   function Update(reply,callback) {
+	   console.log(reply)
       $.ajax({
          url:"/new",
-         type:"post",
+         type:"put",
          data:JSON.stringify(reply),
          contentType : "application/json;charset=UTF-8",
          success: function(result){
             if(callback)
                callback(result);
+         },
+         error: function(){
          }
       })
+   }
+   
+   // 댓글 목록 리스트를 보기 위한 함수 선언
+   function getRList(bno, callback) {
+      var bno = bno;
+      $.getJSON(
+            "/Rlist/"+bno+".json",
+            function(data){
+               if (callback)
+                  callback(data);
+            }
+      )
    }
 
    
@@ -202,8 +220,8 @@ var replyService=(function(){
    
    
    return {
-      add:add,
-      getList:getList,
+	   Update:Update,
+      getRList:getRList,
       reDetail:reDetail,
       reUpdate:reUpdate,
       reRemove:reRemove

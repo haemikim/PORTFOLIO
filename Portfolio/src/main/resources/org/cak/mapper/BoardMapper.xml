@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.cak.mapper.BoardMapper">
 	<insert id="write">
-		insert custumer(category, title, content, writer, pin)
-		value (#{category},#{title},#{content},#{writer},
+		insert custumer(category, title, content, writer, pin, reply, replyer)
+		value (#{category},#{title},#{content},#{writer},#{reply},#{replyer},
 		<choose>
 			<when test="category == 'notice'">
 				1
@@ -86,20 +86,25 @@
 	
 	<!-- 댓글 영역 -->
 	
-   <insert id="Rwrite">
-      insert into reply(bno,reply,replyer)
-      values(#{bno},#{reply},#{replyer})
-   </insert>
+   <update id="Rwrite">
+      update custumer
+      set reply = #{reply},
+      	  replyer = #{replyer}
+      where bno = #{bno}
+   </update>
+   <select id="Rlist" resultType="org.cak.domain.BoardDTO">
+      select #{reply},#{replyer},#{bno} from custumer where bno=#{bno}
+   </select>
    <select id="Rmodify" resultType="org.cak.domain.BoardDTO">
-      select * from reply where bno=#{bno}
+      select #{reply},#{replyer},#{bno} from custumer where bno=#{bno}
    </select>
    <update id="Rupdate">
-      update reply
+      update custumer
       set reply = #{reply}
       where bno = #{bno}
    </update>
    <delete id="Rremove">
-      delete from reply
+      delete from custumer
       where bno = #{bno}
    </delete>
 	
