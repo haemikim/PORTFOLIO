@@ -93,20 +93,18 @@
       where bno = #{bno}
    </update>
    <select id="Rlist" resultType="org.cak.domain.BoardDTO">
-      select #{reply},#{replyer},#{bno} from custumer where bno=#{bno}
+      select * from custumer where bno=#{bno}
    </select>
-   <select id="Rmodify" resultType="org.cak.domain.BoardDTO">
-      select #{reply},#{replyer},#{bno} from custumer where bno=#{bno}
-   </select>
-   <update id="Rupdate">
+     <update id="Rupdate">
       update custumer
       set reply = #{reply}
       where bno = #{bno}
    </update>
-   <delete id="Rremove">
-      delete from custumer
+   <update id="Rremove">
+      update custumer
+      set reply = NULL
       where bno = #{bno}
-   </delete>
+   </update>
 	
 	
 </mapper>

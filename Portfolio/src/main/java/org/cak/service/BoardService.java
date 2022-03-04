@@ -28,8 +28,8 @@ public interface BoardService {
 	public BoardDTO Rdetail(int bno);
     // 댓글 목록 리스트 설계
     public BoardDTO Rlist(int bno);
-	// 댓글 수정 설계된것을 구현
-	public int Rupdate(BoardDTO board);
+    // 댓글 update 설계
+    public int Rupdate(BoardDTO board);
 	// 댓글 삭제 설계
 	public int Rremove(BoardDTO board);
 		

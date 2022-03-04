@@ -3,37 +3,51 @@
  * 
  */
 // list부분 추가하기!!!!!!!!
-$(document).ready(function(){
+$(document).ready(function(){		
+	
+	
+	
    // 게시물 번호 가져오기
    let bno = $("#bno").val();
    
    showList();
+  
    
    // showList 함수 선언
-	function showList(){ 
-			BoardService.getRList({bno:bno},function(Rlist){
-					
+	function showList(){
+			BoardService.getRlist({bno:bno},function(Rlist){
          var str="";
-         
-
-            str+="<div class='replyList' data-bno='"+Rlist[i].bno+"'>";
-            str+="<div><p><b>"+Rlist[i].replyer+"</b></p>" + "<p>"+Rlist[i].reply+"</p></div>";
-            str+="<div><button class='modBtn' data-bno='"+Rlist[i].bno+"'>수정</button><button class='removeBtn' data-bno='"+Rlist[i].bno+"'>삭제</button></div>"
+            str+="<div class='replyList' data-bno='"+Rlist.bno+"'>";
+            str+="<div><p><b>"+Rlist.replyer+"</b></p>" + "<p>"+Rlist.reply+"</p></div>";
+            str+="<div><button class='modBtn' data-bno='"+Rlist.bno+"'>수정</button><button class='removeBtn' data-bno='"+Rlist.bno+"'>삭제</button></div>"
             str+="</div><br>";
+            
 
-         
+            console.log(str);
          $("#relist").html(str);
          
    
         const sessionId = $("#session").val();
          
-        /*console.log(sessionId);*/
+        console.log(sessionId);
         
         if(sessionId != "administrator1"){
 	       	 $(".modBtn").hide();
 	       	 $(".removeBtn").hide();
         }
+        console.log(Rlist.reply)
+        console.log(reply)
+        
+        if(Rlist.reply == null){
+    		$("#reply-area").show();
+    		$("#relist").hide();
+    	}else {
+    		$("#reply-area").hide();
+    		$("#relist").show();
+    	}
+        
       });
+			
    }
    // showList 함수 선언 끝
    
@@ -42,11 +56,8 @@ $(document).ready(function(){
          if($("#reply").val() != "" && $("#replyer").val() != ""){
             //사용자가 입력한 댓글 내용을 저장
             let reply = $("#reply").val();
-            console.log(reply);
             //사용자가 입력한 댓글 작성자를 저장
             let replyer = $("#replyer").val();
-
-            
             
             BoardService.Update({reply:reply, replyer:replyer, bno:bno},
                   function(result){
@@ -55,6 +66,7 @@ $(document).ready(function(){
                showList();
             }
             );
+            
             $("#reply").val("");
             $("#replyer").val("");
          } else {
@@ -62,6 +74,8 @@ $(document).ready(function(){
             $("#reply").val("");
             $("#replyer").val("");
          }
+         
+
       })   
       // 댓글 작성 버튼 클릭 끝
    
@@ -76,7 +90,7 @@ $(document).ready(function(){
          $(".modal").css("display", "block");
          $("body").css("overflow", "hidden");
          
-         // bno값 가져오기 (for문에 사용했던 data-bno)
+         // bno값 가져오기 
          const bno = $(this).data("bno");
          
          BoardService.reDetail(bno,function(detail){
@@ -99,6 +113,7 @@ $(document).ready(function(){
          })
          
          $("body").css("overflow", "auto");
+
       })
       // 댓글 update 끝
       
@@ -115,16 +130,18 @@ $(document).ready(function(){
    
    // 댓글 삭제 버튼을 클릭하면
    $("#relist").on("click", ".removeBtn", function(){
-      // bno값 가져오기 (for문에 사용했던 data-rno)
-      const bno = $(this).data("bno");
-      const reply = {bno:bno};
+      // reply랑 값 가져오기
+
+      const reply = {bno:$(this).data("bno")};
+      console.log(reply);
       
       BoardService.reRemove(reply, function(result) {
          alert("댓글 삭제 : " + result);
-         showList();
+         showList();         
       })
+     
    })
-   
+
    
    
    
@@ -149,7 +166,7 @@ var BoardService=(function(){
          url:"/new",
          type:"put",
          data:JSON.stringify(reply),
-         contentType : "application/json;charset=UTF-8",
+         contentType : "application/json; charset=UTF-8",
          success: function(result){
             if(callback)
                callback(result);
@@ -160,11 +177,13 @@ var BoardService=(function(){
    }
    
    // 댓글 목록 리스트를 보기 위한 함수 선언
-   function getRList(bno, callback) {
-      var bno = bno;
+   function getRlist(param, callback) {
+      var bno = param.bno;
+      
       $.getJSON(
             "/Rlist/"+bno+".json",
             function(data){
+
                if (callback)
                   callback(data);
             }
@@ -176,7 +195,8 @@ var BoardService=(function(){
    function reDetail(bno, callback) {
       var bno=bno;
       $.getJSON(
-            bno+".json",
+    		"/Rlist/"+ bno+".json",
+
             function(data) {
                if(callback)
                   callback(data);
@@ -204,7 +224,7 @@ var BoardService=(function(){
    function reRemove(reply, callback) {
       $.ajax({
          url: "/Rremove",
-         type: "delete",
+         type: "put",
          data: JSON.stringify(reply),
          contentType:"application/json; charset=utf-8",
          success: function(result) {
@@ -221,7 +241,7 @@ var BoardService=(function(){
    
    return {
 	   Update:Update,
-      getRList:getRList,
+      getRlist:getRlist,
       reDetail:reDetail,
       reUpdate:reUpdate,
       reRemove:reRemove

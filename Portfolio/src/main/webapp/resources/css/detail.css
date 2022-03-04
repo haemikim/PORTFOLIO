@@ -168,9 +168,9 @@ a{
    margin-left: 7px;
    font-size: 12px;
    border-radius: 5px;
-   color: #333;
-   background-color: rgba(252, 240, 221, 0.9);
-   border: solid 1px rgb(255, 196, 102);
+   color: #fefefe;
+   background-color: plum;
+   border: solid 1px rgb(218, 109, 218);
    cursor: pointer;
 }
 

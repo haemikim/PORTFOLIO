@@ -57,7 +57,8 @@
            <!-- 댓글 영역 -->
            <div class="board__reply">
               <input id="bno" type="hidden" value="${detail.bno}">
-              <c:if test="${login.id == 'administrator1'}">
+              <div id="reply-area">
+              	<c:if test="${login.id == 'administrator1'}" >
 	              <h3>댓글</h3>
 	              <div>
 	                 <textarea id="reply" maxlength="1000" cols="125" rows="3" required></textarea>
@@ -68,10 +69,14 @@
 	                 </div>
 	              </div>
               </c:if>
-              <div>
-                 <input id="session" type="hidden" value="${login.id}"/>
-                 <ul id="relist">
-                 </ul>
+              
+              </div>
+              <div>              
+
+                	<input id="session" type="hidden" value="${login.id}"/>
+	                <div id="relist">
+	                </div>
+
               </div>
               
               <!-- Modal -->
@@ -126,9 +131,6 @@
            </div>
        </div>
    </div>
-        
-
-   
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="https://kit.fontawesome.com/a3ecbab334.js"></script>
     <script type="text/javascript" src="../resources/js/detail.js"></script>

@@ -45,7 +45,7 @@
 
 
       <div class="product_main">
-      	<c:if test="${login.id == 'administrator1'}">
+      	<c:if test="${login != null}">
 		   <div class="Rmore">
 		        <a href="/addProduct">
 		            <button class="btn_Rmore">리뷰추가</button>

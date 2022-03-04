@@ -29,9 +29,8 @@ public interface BoardMapper {
 	public BoardDTO Rdetail(int bno);
     // 댓글 목록 리스트 설계
     public BoardDTO Rlist(int bno);
-	// 댓글수정 설계
-	// 값을 리턴받는다
-	public int Rupdate(BoardDTO board);
+    // 댓글 update 설계
+    public int Rupdate(BoardDTO board);
 	// 댓글 삭제 설계
 	public int Rremove(BoardDTO board);
 	

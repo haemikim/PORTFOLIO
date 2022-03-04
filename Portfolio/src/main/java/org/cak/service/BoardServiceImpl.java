@@ -59,10 +59,10 @@ public class BoardServiceImpl implements BoardService{
 	public BoardDTO Rlist(int bno){
       return bmapper.Rlist(bno);
    }
-	// 댓글 수정 설계된것을 구현
-	public int Rupdate(BoardDTO board) {
-		return bmapper.Rupdate(board);
-	}
+	// 댓글 update 설계
+    public int Rupdate(BoardDTO board) {
+    	return bmapper.Rupdate(board);
+    }
 	// 댓글 삭제 설계
 	public int Rremove(BoardDTO board) {
 		return bmapper.Rremove(board);
