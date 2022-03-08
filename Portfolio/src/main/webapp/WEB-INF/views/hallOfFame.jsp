@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../resources/css/hallOfFame.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
     </script>
-    <script type="text/javascript" src="../resources/js/productList.js"></script>
+    <script type="text/javascript" src="../resources/js/hallOfFame.js"></script>
     
 </head>
 <body>
@@ -34,7 +34,7 @@
         </div><!--p_title-->
 
       <!-- 보고 a 태그에 바로 주소집어넣는 형식 사용하기 -->
-          <form id="actionForm3" action="/productList" method="get">
+          <form id="actionForm" action="/hallOfFame" method="get">
                         
             <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 	    	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">	    	
@@ -47,7 +47,7 @@
       <div class="product_main">
       	<c:if test="${login != null}">
 		   <div class="Rmore">
-		        <a href="/addProduct">
+		        <a href="/addHOF">
 		            <button class="btn_Rmore">리뷰추가</button>
 		        </a>
 		    </div> 
@@ -58,26 +58,26 @@
 			    <li class="inner_re">           
 			            <div class="prdImg">
 			                <a href="">
-			                    <img src="./img/review01.jpg" id="" alt=""/>
+			                    <img src="/display2?fileName=${List.uploadPath}/${List.uuid}_${List.fileName}" id="" alt=""/>
 			                </a>
 			            </div>
 			            <div class="description">                                
 			                <div class="info">
 			                    <a href="">
-			                        <p>나만의 커스텀 케이크</p>
+			                        <p>${List.rtitle}</p>
 			                    </a>
 			                    <p class="re_txt">review</p>
-			                    <p class="r_txt">정말 미치도록 귀여워서 받자마자 앉아서 으스러트릴뻔했어요;</p>
+			                    <p class="r_txt">${List.review}</p>
 			                </div>
 			                <div class="counteraction">
 			                    <ul>
 			                        <li class="like">
 			                            <span>LIKE</span>
-			                            <span>0</span>
+			                            <span>${List.goodCnt}</span>
 			                        </li>
 			                        <li class="view">
 			                            <span>VIEW</span>
-			                            <span>0</span>
+			                            <span>${List.cnt}</span>
 			                        </li>
 			                    </ul>
 			                </div>

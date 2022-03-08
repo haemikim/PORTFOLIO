@@ -76,10 +76,7 @@ public class MainController {
 		return "redirect:/list";
 	}
 	
-	
-	// 보고 하면 새로 컨트롤러 만들기
-	@GetMapping("hallOfFame")
-	public void hallOfFames() {}
+
 	
 	
 	@PutMapping(value="new",consumes="application/json", produces={MediaType.TEXT_PLAIN_VALUE})
