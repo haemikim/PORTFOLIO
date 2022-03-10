@@ -28,4 +28,5 @@ public class HOFServiceImpl implements HOFService{
 	public void addHOF(HOFDTO hof) {
 		hmapper.addHOF(hof);
 	}
+
 }

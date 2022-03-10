@@ -36,7 +36,6 @@ $(document).ready(function(){
 	       	 $(".removeBtn").hide();
         }
         console.log(Rlist.reply)
-        console.log(reply)
         
         if(Rlist.reply == null){
     		$("#reply-area").show();

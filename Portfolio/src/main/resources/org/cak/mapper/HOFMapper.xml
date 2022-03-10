@@ -40,32 +40,7 @@
 			insert into HOFList (uuid, uploadpath, filename, rtitle, review)
 			values (#{uuid}, #{uploadPath}, #{fileName}, #{rtitle}, #{review})
 		</insert>
-		
-		<!-- 좋아요 부분 -->
-		
-		        <!-- boardLike -->
 
-        <insert id="createLike">
-            INSERT INTO likelist (rno, id)
-            VALUES (#{rno}, #{id})
-        </insert>
 
-        <delete id="deleteLike">
-            DELETE FROM likelist
-            WHERE rno = #{rno} AND id = #{id}
-        </delete>
-
-        <select id="updateLike" resultType="org.cak.domain.LikeDTO">
-            UPDATE HOFList
-            SET
-            goodCnt = (SELECT COUNT(*)
-            FROM likelist
-            WHERE rno = #{rno})
-            WHERE rno = #{rno}
-        </select>
-
-        <select id="getLike" resultType="int" >
-            SELECT COUNT(lno) FROM likelist WHERE rno = #{rno} AND id = #{id}
-        </select>
 
 </mapper>
