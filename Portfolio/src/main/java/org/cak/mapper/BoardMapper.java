@@ -25,8 +25,6 @@ public interface BoardMapper {
 	// 댓글쓰기 설계
 	// 값을 리턴받는다
 	public int Rwrite(BoardDTO board);
-	// 댓글 수정을 하기위해 댓글내용가져오기
-	public BoardDTO Rdetail(int bno);
     // 댓글 목록 리스트 설계
     public BoardDTO Rlist(int bno);
     // 댓글 update 설계

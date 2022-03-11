@@ -51,10 +51,6 @@ public class BoardServiceImpl implements BoardService{
 		// 값을 리턴받는다
 		return bmapper.Rwrite(board);
 	}
-	// 댓글 수정을 하기위해 댓글내용가져오기
-	public BoardDTO Rdetail(int bno) {
-		return bmapper.Rdetail(bno);
-	}
    // 댓글 목록 리스트 설계한 것을 구현
 	public BoardDTO Rlist(int bno){
       return bmapper.Rlist(bno);
